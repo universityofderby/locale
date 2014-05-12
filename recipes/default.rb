@@ -49,7 +49,7 @@ if platform?("redhat", "centos", "fedora")
 
   file locale_file_path do
     content lazy {
-      locale = IO.read(locale_file_path)
+      locale = IO.read(locale_file_path) rescue ""
       variables = Hash[locale.lines.map { |line| line.strip.split("=") }]
       variables["LANG"] = lang
       variables["LC_ALL"] = lc_all
